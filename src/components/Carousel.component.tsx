@@ -2,9 +2,10 @@ import classNames from "classnames";
 import React, { useEffect, useState } from "react";
 import { ReactComponent as ChevronCircled } from "../assets/chevron-circled.svg";
 import { CHEVRON_CIRCLED_SIZE } from "../constants/constants";
+import { CarouselModel } from "../types/Carousel.model";
 import "./carousel.scss";
 
-const Carousel = (props: any) => {
+const Carousel = (props: CarouselModel) => {
   const { children, show } = props;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [length, setLength] = useState(children.length);
@@ -36,7 +37,7 @@ const Carousel = (props: any) => {
     "volvo--pagination__next--disabled": !(currentIndex < length - show),
   });
 
-  const adjustment = (currentIndex <= 0 || show === 1) ? 0 : 24;
+  const adjustment = currentIndex <= 0 || show === 1 ? 0 : 24;
 
   return (
     <div className="volvo--carousel">
@@ -45,7 +46,9 @@ const Carousel = (props: any) => {
           <div
             className={`carousel-content show-${show}`}
             style={{
-              transform: `translateX(calc(-${currentIndex * (100 / show)}% - ${adjustment}px))`,
+              transform: `translateX(calc(-${
+                currentIndex * (100 / show)
+              }% - ${adjustment}px))`,
             }}
           >
             {children}
