@@ -1,0 +1,77 @@
+$volvo-blue: #1c6bba;
+$volvo-grey: #707070;
+$volvo-black: #141414;
+
+.volvo {
+  &--cars {
+    &__car {
+      min-width: 338.8px;
+      width: 338.8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+      margin-right: 24px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &__body-type {
+        margin: 0;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: $volvo-grey;
+        text-transform: uppercase;
+        letter-spacing: 0.02rem;
+      }
+
+      &__name {
+        margin: 0 0 16px 0;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: $volvo-black;
+      }
+
+      &:hover {
+        p {
+          color: $volvo-blue !important;
+        }
+      }
+
+      &__links {
+        margin: 16px 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__link {
+          display: flex;
+          align-items: center;
+          color: $volvo-blue;
+          text-transform: uppercase;
+          line-height: 1.375rem;
+          font-size: 0.875rem;
+          text-decoration: none;
+          letter-spacing: 0.02em;
+          font-weight: 600;
+          transition: 250ms;
+          margin: 0 12px;
+
+          &:hover {
+            transition: 250ms;
+            color: $volvo-black;
+
+            svg {
+              path {
+                stroke: $volvo-black;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

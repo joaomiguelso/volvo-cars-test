@@ -3,6 +3,7 @@ import { CarModel } from "../types/Car.model";
 import { ReactComponent as Chevron } from "../assets/chevron-small.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
+import "./car.scss"
 
 const Car = (props: CarModel) => (
   <div className="volvo--cars__car">
