@@ -57,7 +57,11 @@ function CarsPage() {
 
         <Carousel show={numberCarouselColumns}>
           {displayCars.map((car: CarModel) => (
-            <Car {...car} />
+            <div>
+              <div style={{ padding: 8 }}>
+                <Car {...car} />
+              </div>
+            </div>
           ))}
         </Carousel>
       </div>

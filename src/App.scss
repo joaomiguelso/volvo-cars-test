@@ -4,10 +4,10 @@ $volvo-black: #141414;
 
 .volvo {
   animation: fadeIn 500ms ease-in;
-  padding: 24px;
-  position: relative;
+  padding: 12px;
   background: linear-gradient(180deg, #fff 0%, rgba(24, 26, 32, 0.1) 100%);
   min-height: 100vh;
+  overflow-x: hidden;
 
   &--title {
     color: $volvo-black;
@@ -48,12 +48,13 @@ $volvo-black: #141414;
   }
 
   input {
-    margin-bottom: 42px;
+    margin: 0 8px 42px 8px;
     padding: 12px 8px;
     border-radius: 3px;
     border-color: rgba($volvo-grey, 0.2);
     outline: none;
     font-size: 1rem;
+
   }
 
   &--cars {
