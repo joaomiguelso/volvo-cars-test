@@ -55,20 +55,22 @@ const Carousel = (props: CarouselModel) => {
           </div>
         </div>
       </div>
-      <p className="volvo--pagination">
-        <span className={previousButtonClasses} onClick={prev}>
-          <ChevronCircled
-            width={CHEVRON_CIRCLED_SIZE}
-            height={CHEVRON_CIRCLED_SIZE}
-          />
-        </span>
-        <span className={nextButtonClasses} onClick={next}>
-          <ChevronCircled
-            width={CHEVRON_CIRCLED_SIZE}
-            height={CHEVRON_CIRCLED_SIZE}
-          />
-        </span>
-      </p>
+      {length > 0 && (
+        <p className="volvo--pagination">
+          <span className={previousButtonClasses} onClick={prev}>
+            <ChevronCircled
+              width={CHEVRON_CIRCLED_SIZE}
+              height={CHEVRON_CIRCLED_SIZE}
+            />
+          </span>
+          <span className={nextButtonClasses} onClick={next}>
+            <ChevronCircled
+              width={CHEVRON_CIRCLED_SIZE}
+              height={CHEVRON_CIRCLED_SIZE}
+            />
+          </span>
+        </p>
+      )}
     </div>
   );
 };
