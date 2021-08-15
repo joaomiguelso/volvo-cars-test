@@ -40,12 +40,12 @@ function CarsPage() {
   const scroll = (scrollOffset: number) => {
     ref.current.scrollLeft += scrollOffset;
     const isBackDisabled = ref.current.scrollLeft < 363;
-    const isNextDisabled = ref.current.scrollLeft + 363 > cars.length * 363;
-    console.log(
-      isNextDisabled,
-      ref.current.scrollLeft,
-      ref.current.scrollWidth
-    );
+    const isNextDisabled =
+      ref.current.scrollLeft + ref.current.offsetWidth >=
+      ref.current.scrollWidth;
+
+    if (ref.current.scrollLeft < 363) ref.current.scrollLeft = 0;
+
     setBackDisabled(isBackDisabled);
     setNextDisabled(isNextDisabled);
   };
@@ -56,7 +56,7 @@ function CarsPage() {
   });
 
   const nextClasses = classNames({
-    "volvo--pagination__back": true,
+    "volvo--pagination__next": true,
     "volvo--pagination__next--disabled": nextDisabled,
   });
 
@@ -91,7 +91,7 @@ function CarsPage() {
           >
             <ChevronCircled width="40" height="40" />
           </span>
-          <span className="volvo--pagination__next" onClick={() => scroll(363)}>
+          <span className={nextClasses} onClick={() => scroll(363)}>
             <ChevronCircled width="40" height="40" />
           </span>
         </p>
