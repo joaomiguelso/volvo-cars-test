@@ -1,14 +1,13 @@
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
 import { ReactComponent as ChevronCircled } from "../assets/chevron-circled.svg";
-import { CHEVRON_SIZE } from "../constants/constants";
+import { CHEVRON_CIRCLED_SIZE } from "../constants/constants";
 import "./carousel.scss";
 
 const Carousel = (props: any) => {
   const { children, show } = props;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [length, setLength] = useState(children.length);
-  const [touchPosition, setTouchPosition] = useState(null);
 
   useEffect(() => {
     setCurrentIndex(0);
@@ -27,32 +26,6 @@ const Carousel = (props: any) => {
     }
   };
 
-  const handleTouchStart = (e: any) => {
-    const touchDown = e.touches[0].clientX;
-    setTouchPosition(touchDown);
-  };
-
-  const handleTouchMove = (e: any) => {
-    const touchDown = touchPosition;
-
-    if (touchDown === null) {
-      return;
-    }
-
-    const currentTouch = e.touches[0].clientX;
-    const diff = touchDown - currentTouch;
-
-    if (diff > 5) {
-      next();
-    }
-
-    if (diff < -5) {
-      prev();
-    }
-
-    setTouchPosition(null);
-  };
-
   const previousButtonClasses = classNames({
     "volvo--pagination__back": true,
     "volvo--pagination__back--disabled": currentIndex <= 0,
@@ -63,18 +36,16 @@ const Carousel = (props: any) => {
     "volvo--pagination__next--disabled": !(currentIndex < length - show),
   });
 
+  const adjustment = (currentIndex <= 0 || show === 1) ? 0 : 24;
+
   return (
     <div className="volvo--carousel">
       <div className="volvo--carousel__wraper">
-        <div
-          className="carousel-content-wrapper"
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-        >
+        <div className="carousel-content-wrapper">
           <div
             className={`carousel-content show-${show}`}
             style={{
-              transform: `translateX(-${currentIndex * (100 / show)}%)`,
+              transform: `translateX(calc(-${currentIndex * (100 / show)}% - ${adjustment}px))`,
             }}
           >
             {children}
@@ -83,10 +54,16 @@ const Carousel = (props: any) => {
       </div>
       <p className="volvo--pagination">
         <span className={previousButtonClasses} onClick={prev}>
-          <ChevronCircled width={CHEVRON_SIZE} height={CHEVRON_SIZE} />
+          <ChevronCircled
+            width={CHEVRON_CIRCLED_SIZE}
+            height={CHEVRON_CIRCLED_SIZE}
+          />
         </span>
         <span className={nextButtonClasses} onClick={next}>
-          <ChevronCircled width={CHEVRON_SIZE} height={CHEVRON_SIZE} />
+          <ChevronCircled
+            width={CHEVRON_CIRCLED_SIZE}
+            height={CHEVRON_CIRCLED_SIZE}
+          />
         </span>
       </p>
     </div>

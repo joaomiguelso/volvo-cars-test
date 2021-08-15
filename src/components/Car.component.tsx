@@ -3,7 +3,8 @@ import { CarModel } from "../types/Car.model";
 import { ReactComponent as Chevron } from "../assets/chevron-small.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
-import "./car.scss"
+import "./car.scss";
+import { CHEVRON_SIZE } from "../constants/constants";
 
 const Car = (props: CarModel) => (
   <div className="volvo--cars__car">
@@ -22,11 +23,11 @@ const Car = (props: CarModel) => (
     <div className="volvo--cars__car__links">
       <Link to={`/learn/${props.id}`} className="volvo--cars__car__links__link">
         Learn&nbsp;
-        <Chevron width="11" height="11" />
+        <Chevron width={CHEVRON_SIZE} height={CHEVRON_SIZE} />
       </Link>
       <Link to={`/shop/${props.id}`} className="volvo--cars__car__links__link">
         Shop&nbsp;
-        <Chevron width="11" height="11" />
+        <Chevron width={CHEVRON_SIZE} height={CHEVRON_SIZE} />
       </Link>
     </div>
   </div>

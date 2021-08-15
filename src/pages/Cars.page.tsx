@@ -3,8 +3,10 @@ import Car from "../components/Car.component";
 import { CarModel } from "../types/Car.model";
 import { CARS_API_ENDPOINT } from "../constants/constants";
 import Carousel from "../components/Carousel.component";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 
 function CarsPage() {
+  const { width } = useWindowDimensions();
   const [cars, setCars] = useState<Array<CarModel>>([]);
   const [displayCars, setDisplayCars] = useState<Array<CarModel>>([]);
   const [filter, setFilter] = useState("");
@@ -33,9 +35,11 @@ function CarsPage() {
 
   const hasNoCars = displayCars.length === 0;
 
+  const numberOfCards = width > 1024 ? 3 : width > 720 ? 2 : 1;
+
   return (
     <div className="volvo">
-      <h2 className="volvo--title">All Recharge Models</h2>
+      <h2 className="volvo--title">All Recharge Models {width}</h2>
       <div className="volvo--container">
         <input
           type="text"
@@ -46,7 +50,7 @@ function CarsPage() {
           <h3 className="volvo--cars__no-results">No Results founded</h3>
         )}
 
-        <Carousel show={3}>
+        <Carousel show={numberOfCards}>
           {displayCars.map((car: CarModel) => (
             <Car {...car} />
           ))}
