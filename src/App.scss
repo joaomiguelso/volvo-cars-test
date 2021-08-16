@@ -3,8 +3,17 @@ $volvo-grey: #707070;
 $volvo-black: #141414;
 
 .volvo {
+  -webkit-animation: fadeIn 500ms ease-in;
   animation: fadeIn 500ms ease-in;
   padding: 12px;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#fff),
+    to(rgba(24, 26, 32, 0.1))
+  );
+  background: -o-linear-gradient(top, #fff 0%, rgba(24, 26, 32, 0.1) 100%);
   background: linear-gradient(180deg, #fff 0%, rgba(24, 26, 32, 0.1) 100%);
   min-height: 100vh;
   overflow-x: hidden;
@@ -22,29 +31,13 @@ $volvo-black: #141414;
     width: 100%;
     max-width: 1064.4px;
     margin: 0 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
-  }
-
-  &--pagination {
-    margin-left: auto;
-    margin-right: 0;
-    &__back {
-      margin-right: 8px;
-      svg {
-        transform: rotate(180deg);
-      }
-    }
-
-    &__back,
-    &__next {
-      cursor: pointer;
-
-      &--disabled {
-        cursor: not-allowed;
-        opacity: 0.4;
-      }
-    }
   }
 
   input {
@@ -54,7 +47,6 @@ $volvo-black: #141414;
     border-color: rgba($volvo-grey, 0.2);
     outline: none;
     font-size: 1rem;
-
   }
 
   &--cars {
@@ -63,6 +55,7 @@ $volvo-black: #141414;
       text-align: center;
       font-size: 1.125rem;
       letter-spacing: 0.02em;
+      -webkit-animation: fadeIn 500ms ease-in;
       animation: fadeIn 500ms ease-in;
       margin: 96px 0;
     }
@@ -77,34 +70,7 @@ $volvo-black: #141414;
     }
   }
 
-  @-moz-keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
   @-webkit-keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @-o-keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @-ms-keyframes fadeIn {
     0% {
       opacity: 0;
     }

@@ -3,10 +3,10 @@ import { CarModel } from "../types/Car.model";
 import { ReactComponent as Chevron } from "../assets/chevron-small.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
-import "./car.scss";
+import "./car_slide.scss";
 import { CHEVRON_SIZE } from "../constants/constants";
 
-const Car = (props: CarModel) => (
+const CarSlide = (props: CarModel) => (
   <div className="volvo--cars__car">
     <p className="volvo--cars__car__body-type">{props.bodyType}</p>
     <p className="volvo--cars__car__name">
@@ -33,4 +33,4 @@ const Car = (props: CarModel) => (
   </div>
 );
 
-export default Car;
+export default CarSlide;

@@ -1,1 +1,1 @@
-declare module "react-items-carousel";
+declare module "vcc-ui";

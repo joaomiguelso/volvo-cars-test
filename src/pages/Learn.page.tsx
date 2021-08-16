@@ -3,7 +3,8 @@ import { Link, matchPath, useHistory } from "react-router-dom";
 import { CARS_API_ENDPOINT, CAR_LEARN_PATH } from "../constants/constants";
 import _ from "lodash";
 import { CarModel } from "../types/Car.model";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Grid, Col, Row, Spacer, Text } from "vcc-ui";
+import CarCard from "../components/CarCard.component";
 
 const LearnPage = () => {
   const [car, setCar] = useState<CarModel>();
@@ -28,24 +29,19 @@ const LearnPage = () => {
     <div className="volvo">
       <h1 className="volvo--title">Learn Page</h1>
       <div className="volvo--container">
-        {car && (
-          <div className="volvo--cars__car">
-            <p className="volvo--cars__car__body-type">{car.bodyType}</p>
-            <p className="volvo--cars__car__name">
-              <b>{car.modelName}</b> {car.modelType}
-            </p>
-            <LazyLoadImage
-              alt={car.modelName}
-              src={car.imageUrl}
-              effect="blur"
-              className="volvo--cars__car__image"
-              width={"100%"}
-              height={"100%"}
-            />
-          </div>
-        )}
-        <br />
-        <Link to="/">Go back</Link>
+        <Grid>
+          <Row align="center">
+            <Col size={8}>
+              <>
+                {car && <CarCard {...car} />}
+                <Spacer />
+                <Link to="/">
+                  <Text subStyle="inline-link">Go back</Text>
+                </Link>
+              </>
+            </Col>
+          </Row>
+        </Grid>
       </div>
     </div>
   );

@@ -8,3 +8,4 @@ export const WINDOW_BREAKPOINTS = {
   TABLETS: 768,
   MOBILE: 480,
 };
+export const TOUCH_MARGIN = 5;

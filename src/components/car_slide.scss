@@ -7,10 +7,20 @@ $volvo-black: #141414;
     &__car {
       min-width: 338.8px;
       width: 360;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
       flex-direction: column;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
       justify-content: flex-start;
+      -webkit-box-align: start;
+      -ms-flex-align: start;
       align-items: flex-start;
+      -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
 
       &__body-type {
@@ -38,12 +48,22 @@ $volvo-black: #141414;
       &__links {
         margin: 16px 0;
         width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
 
         &__link {
+          display: -webkit-box;
+          display: -ms-flexbox;
           display: flex;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
           align-items: center;
           color: $volvo-blue;
           text-transform: uppercase;
@@ -52,10 +72,14 @@ $volvo-black: #141414;
           text-decoration: none;
           letter-spacing: 0.02em;
           font-weight: 600;
+          -webkit-transition: 250ms;
+          -o-transition: 250ms;
           transition: 250ms;
           margin: 0 12px;
 
           &:hover {
+            -webkit-transition: 250ms;
+            -o-transition: 250ms;
             transition: 250ms;
             color: $volvo-black;
 

@@ -1,30 +1,36 @@
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
 import { ReactComponent as ChevronCircled } from "../assets/chevron-circled.svg";
-import { CHEVRON_CIRCLED_SIZE } from "../constants/constants";
+import {
+  CHEVRON_CIRCLED_SIZE,
+  TOUCH_MARGIN,
+  WINDOW_BREAKPOINTS,
+} from "../constants/constants";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 import { CarouselModel } from "../types/Carousel.model";
 import "./carousel.scss";
 
 const Carousel = (props: CarouselModel) => {
   const { children, show } = props;
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [length, setLength] = useState(children.length);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [touchPosition, setTouchPosition] = useState(null);
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
-    setCurrentIndex(0);
+    setCurrentSlideIndex(0);
     setLength(children.length);
   }, [children]);
 
-  const next = () => {
-    if (currentIndex < length - show) {
-      setCurrentIndex((prevState) => prevState + 1);
+  const previousSlide = () => {
+    if (currentSlideIndex > 0) {
+      setCurrentSlideIndex((prevState) => prevState - 1);
     }
   };
 
-  const prev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prevState) => prevState - 1);
+  const nextSlide = () => {
+    if (currentSlideIndex < length - show) {
+      setCurrentSlideIndex((prevState) => prevState + 1);
     }
   };
 
@@ -36,37 +42,28 @@ const Carousel = (props: CarouselModel) => {
   };
 
   const handleTouchMove = (e: any) => {
-    console.log(e);
     if (e && e.touches && e.touches[0] && e.touches[0].clientX) {
       const touchDown = touchPosition;
-
-      if (touchDown === null) {
-        return;
-      }
+      if (touchDown === null) return;
 
       const currentTouch = e.touches[0].clientX;
-      const diff = touchDown - currentTouch;
+      const difference = touchDown - currentTouch;
 
-      if (diff > 5) {
-        next();
-      }
-
-      if (diff < -5) {
-        prev();
-      }
+      if (difference > TOUCH_MARGIN) nextSlide();
+      if (difference < -TOUCH_MARGIN) previousSlide();
 
       setTouchPosition(null);
     }
   };
 
   const previousButtonClasses = classNames({
-    "volvo--pagination__back": true,
-    "volvo--pagination__back--disabled": currentIndex <= 0,
+    "volvo--carousel__pagination__back": true,
+    "volvo--carousel__pagination__back--disabled": currentSlideIndex <= 0,
   });
 
   const nextButtonClasses = classNames({
-    "volvo--pagination__next": true,
-    "volvo--pagination__next--disabled": !(currentIndex < length - show),
+    "volvo--carousel__pagination__next": true,
+    "volvo--carousel__pagination__next--disabled": !(currentSlideIndex < length - show),
   });
 
   return (
@@ -78,24 +75,37 @@ const Carousel = (props: CarouselModel) => {
           onTouchMove={handleTouchMove}
         >
           <div
-            className={`carousel-content show-${show}`}
+            className={`volvo--carousel__content show-${show}`}
             style={{
-              transform: `translateX(calc(-${currentIndex * (100 / show)}%))`,
+              transform: `translateX(calc(-${
+                currentSlideIndex * (100 / show)
+              }%))`,
             }}
           >
             {children}
           </div>
         </div>
       </div>
-      {length > 0 && (
-        <p className="volvo--pagination">
-          <span className={previousButtonClasses} onClick={prev}>
+      {width <= WINDOW_BREAKPOINTS.MOBILE && (
+        <div className="volvo--carousel__pagination--mobile">
+          {children.map((_: any, index: number) => {
+            return index !== currentSlideIndex ? (
+              <div className="volvo--carousel__pagination--mobile__dot" />
+            ) : (
+              <div className="volvo--carousel__pagination--mobile__dot volvo--carousel__pagination--mobile__dot--active" />
+            );
+          })}
+        </div>
+      )}
+      {width > WINDOW_BREAKPOINTS.MOBILE && length > 0 && (
+        <p className="volvo--carousel__pagination">
+          <span className={previousButtonClasses} onClick={previousSlide}>
             <ChevronCircled
               width={CHEVRON_CIRCLED_SIZE}
               height={CHEVRON_CIRCLED_SIZE}
             />
           </span>
-          <span className={nextButtonClasses} onClick={next}>
+          <span className={nextButtonClasses} onClick={nextSlide}>
             <ChevronCircled
               width={CHEVRON_CIRCLED_SIZE}
               height={CHEVRON_CIRCLED_SIZE}

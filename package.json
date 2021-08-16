@@ -15,7 +15,6 @@
     "node-sass": "4.14.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "react-items-carousel": "^2.8.0",
     "react-lazy-load-image-component": "^1.5.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.4",

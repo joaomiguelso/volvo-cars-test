@@ -1,41 +1,9 @@
 # Volvo Cars (Global Online Digital) 
 ## Front-end coding test (React)
 
-Our team's designer has come up with a new design to show our latest and greatest recharge cars on the website.
-
-Here is how the design look like for desktop and mobile (files are stored under `docs` folder)
-
-### Desktop
-![ProductListDesktop](./docs/ProductList-Desktop.png)
-
-### Mobile
-![ProductListDesktop](./docs/ProductList-Mobile.png)
-
-The data required to render the design is under `public/api/cars.json` folder. You need to fetch the data from the client side and render it in the browser. The data looks like this: 
-
-```json
-[
-    {
-      "id": "xc90-recharge",
-      "modelName": "XC90 Recharge", 
-      "bodyType": "suv",
-      "modelType": "plug-in hybrid",
-      "imageUrl": "/images/xc90_recharge.jpg"
-    }
-]
-```
-
-The product owner is telling you that you can generate the links to the learn and shop pages of each car by concatating the `id` of the car to the learn (`/learn/`) and shop (`/shop/`) urls.
-
-Two extra SVG icons are also provided by our designer which are stored under `docs` folder.
-
-## Requirements
-- The project is bootstraped using create-react-app.
-- Browser support is modern ever-green browsers.
-- Implement this design using React and Typescript.
-- Accessibility is important.
-- Code Structure and reusablity is important.
-
-## Bonus Points:
-- If you use our design system component library, [VCC-UI](https://vcc-ui.netlify.app)
-- If you add a filter bar on the top to filter cars by `bodyType`
+## Developer Notes
+- I did my best to meet the requirements and the designs ( the 2 pngs given)
+- I added a text field in the cars page where you can search by `bodyType`, `modelName` and `modelType`
+- I implemented a responsive and animated carousel. And when on mobile, has touch gesture capabilities.
+- I used the design system component library on the learn and shop page. Im perfectly ok with working with libraries, but I would say the documentation of this one could be improved. That's why I only used it in this pages.
+- Didn't understood well what to do on the Learn and Shop page. I created the pages dynamically, based on the corresponding car ID, and used react router funcionalities. I understood this was a test to my React Router capabilities and didnt invest much time in the design. I also had short time on doing this test, so I focused more on the carousel.

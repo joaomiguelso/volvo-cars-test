@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Car from "../components/Car.component";
+import CarSlide from "../components/CarSlide.component";
 import { CarModel } from "../types/Car.model";
 import { CARS_API_ENDPOINT, WINDOW_BREAKPOINTS } from "../constants/constants";
 import Carousel from "../components/Carousel.component";
@@ -57,9 +57,9 @@ function CarsPage() {
 
         <Carousel show={numberCarouselColumns}>
           {displayCars.map((car: CarModel) => (
-            <div>
+            <div key={`car-slide-${car.id}`}>
               <div style={{ padding: 8 }}>
-                <Car {...car} />
+                <CarSlide {...car} />
               </div>
             </div>
           ))}
