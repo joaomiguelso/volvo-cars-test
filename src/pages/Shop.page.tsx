@@ -31,11 +31,11 @@ const ShopPage = () => {
       <div className="volvo--container">
         <Grid>
           <Row align="center">
-            <Col size={8}>
+            <Col size={7}>
               <>
                 {car && <CarCard {...car} />}
-                <Spacer />
-                <Link to="/">Go back</Link>
+                <Spacer size="4"/>
+                <Link to="/"> GO BACK</Link>
               </>
             </Col>
           </Row>

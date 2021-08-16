@@ -31,12 +31,12 @@ const LearnPage = () => {
       <div className="volvo--container">
         <Grid>
           <Row align="center">
-            <Col size={8}>
+            <Col size={7}>
               <>
                 {car && <CarCard {...car} />}
-                <Spacer />
+                <Spacer size="4" />
                 <Link to="/">
-                  <Text subStyle="inline-link">Go back</Text>
+                  <Text subStyle="inline-link"> GO BACK</Text>
                 </Link>
               </>
             </Col>
