@@ -27,6 +27,7 @@ function CarsPage() {
       const filteredCars = cars.filter(
         (car: CarModel) =>
           car.modelName.toLowerCase().includes(filter) ||
+          car.modelType.toLowerCase().includes(filter) ||
           car.bodyType.toLowerCase().includes(filter)
       );
       setDisplayCars(filteredCars);

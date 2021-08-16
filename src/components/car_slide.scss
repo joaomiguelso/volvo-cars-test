@@ -7,6 +7,7 @@ $volvo-black: #141414;
     &__car {
       min-width: 338.8px;
       width: 360;
+      max-width: 660px;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
